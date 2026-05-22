@@ -14,25 +14,15 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/gopikagopal2517/abademo.git'
+                git credentialsId: 'github-creds',
+                    branch: 'master',
+                    url: 'https://github.com/gopikagopal2517/abademo.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('Package') {
-            steps {
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
         }
     }
@@ -40,13 +30,13 @@ pipeline {
     post {
 
         success {
-            mail to: "keerthanaskkeerthana2008@gmail.com",
+            mail to: "${EMAIL}",
                  subject: "✅ Build Success: ${env.JOB_NAME}",
                  body: "Build completed successfully!\nCheck Jenkins: ${env.BUILD_URL}"
         }
 
         failure {
-            mail to: "keerthanaskkeerthana2008@gmail.com",
+            mail to: "${EMAIL}",
                  subject: "❌ Build Failed: ${env.JOB_NAME}",
                  body: "Build failed!\nCheck Jenkins: ${env.BUILD_URL}"
         }
