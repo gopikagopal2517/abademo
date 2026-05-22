@@ -7,7 +7,7 @@ pipeline {
     }
 
     environment {
-        EMAIL = 'https://github.com/gopikagopal2517/abademo.git'
+        EMAIL = 'keerthanaskkeerthana2008@gmail.com'
     }
 
     stages {
@@ -40,13 +40,13 @@ pipeline {
     post {
 
         success {
-            mail to: "https://github.com/gopikagopal2517/abademo.git",
+            mail to: "keerthanaskkeerthana2008@gmail.com",
                  subject: "✅ Build Success: ${env.JOB_NAME}",
                  body: "Build completed successfully!\nCheck Jenkins: ${env.BUILD_URL}"
         }
 
         failure {
-            mail to: "https://github.com/gopikagopal2517/abademo.git",
+            mail to: "keerthanaskkeerthana2008@gmail.com",
                  subject: "❌ Build Failed: ${env.JOB_NAME}",
                  body: "Build failed!\nCheck Jenkins: ${env.BUILD_URL}"
         }
